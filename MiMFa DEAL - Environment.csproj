@@ -3,18 +3,18 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 
-		<RootNamespace>MiMFa.Engine.DEAL.JS.Environment</RootNamespace>
+		<RootNamespace>MiMFa.Engine.DEAL.Environment</RootNamespace>
 		<EnableDefaultCompileItems>true</EnableDefaultCompileItems>
 
 		<Company>MiMFa</Company>
-		<Product>DEAL.JS</Product>
+		<Product>DEAL</Product>
 		<Authors>Mohammad Fathi (MiMFa)</Authors>
 
 		<ApplicationIcon>logo.ico</ApplicationIcon>
 		<OutputType>Exe</OutputType>
-		<StartupObject>MiMFa.Engine.DEAL.JS.Environment.Program</StartupObject>
+		<StartupObject>MiMFa.Engine.DEAL.Environment.Program</StartupObject>
 
-		<PackageId>MiMFa DEAL.JS - Environment</PackageId>
+		<PackageId>MiMFa DEAL - Environment</PackageId>
 
 		<!-- ClearScript native package is win-x86 -->
 		<PlatformTarget>x86</PlatformTarget>
@@ -32,17 +32,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MiMFa DEAL.JS - Compiler\MiMFa DEAL.JS - Compiler.csproj" />
+		<ProjectReference Include="..\MiMFa DEAL - Engine\MiMFa DEAL - Engine.csproj" />
+		<ProjectReference Include="..\MiMFa DEAL.JS - Compiler\MiMFa DEAL.JS.csproj" />
+		<ProjectReference Include="..\MiMFa DEAL.JS - Engine\MiMFa DEAL.JS - Engine.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="DEAL.JS\Library\final.djs">
+	  <None Update="Library\final.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="DEAL.JS\Library\manual.djs">
+	  <None Update="Library\manual.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="DEAL.JS\Library\initial.djs">
+	  <None Update="Library\initial.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

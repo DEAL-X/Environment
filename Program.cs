@@ -8,7 +8,7 @@ using Microsoft.ClearScript;
 using Microsoft.ClearScript.JavaScript;
 using Microsoft.ClearScript.V8;
 
-namespace MiMFa.Engine.DEAL.JS.Environment
+namespace MiMFa.Engine.DEAL.Environment
 {
     static class Program
     {
@@ -23,10 +23,9 @@ namespace MiMFa.Engine.DEAL.JS.Environment
             Console.OutputEncoding =
             Console.InputEncoding = System.Text.Encoding.UTF8;
 
-            var compiler = new DEAL.JS.Engine();
+            var compiler = new JS.Engine();
             InitializeCompiler(compiler);
             compiler.Logged += Logging;
-            compiler.AttachedLibrary += AttachedLibrary;
             string title = $"MiMFa DEAL.JS [Version {compiler.Version}]";
             Console.Title = title;
             Console.WriteLine(title);
@@ -49,14 +48,14 @@ namespace MiMFa.Engine.DEAL.JS.Environment
                 if (File.Exists(path) && !string.IsNullOrWhiteSpace(code = File.ReadAllText(path))) execute(code);
             });
 
-            executeFile("DEAL.JS\\Library\\initial.djs");
+            executeFile(compiler.SourceDirectory+"initial.djs");
             do
             {
                 Console.Write("> ");
                 execute(Console.ReadLine());
-                executeFile("DEAL.JS\\Library\\manual.djs");
+                executeFile(compiler.SourceDirectory + "manual.djs");
             } while (IsAlive);
-            executeFile("DEAL.JS\\Library\\final.djs");
+            executeFile(compiler.SourceDirectory + "final.djs");
         }
 
         private static void InitializeCompiler(MiMFa.Engine.Engine compiler)
@@ -96,10 +95,6 @@ namespace MiMFa.Engine.DEAL.JS.Environment
                 default:
                     break;
             }
-        }
-        private static void AttachedLibrary(MiMFa.Engine.Engine compiler, Core.LibraryEventArgs e)
-        {
-            compiler.Execute(e.Content, e.Path);
         }
 
     }

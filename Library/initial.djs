@@ -1,7 +1,10 @@
 ﻿use deal;
 
-command cle() { #clearEngine(); }
 command compilemode() { #notExecute(); }
+
+command cle() { #clearEngine(); }
+command #compile::string(value) { #compileEngine(value); }
+command #execute::string(value) { #executeEngine(value); }
 
 command exit() { #closeScreen(); }
 command cls() { #clearScreen(); }

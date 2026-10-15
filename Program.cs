@@ -58,31 +58,57 @@ namespace MiMFa.Engine.DEAL.Environment
             executeFile(compiler.SourceDirectory + "final.djs");
         }
 
-        private static void InitializeCompiler(MiMFa.Engine.Engine compiler)
+        private static void InitializeCompiler(MiMFa.Engine.Engine engine)
         {
             IsAlive = true;
             var interpretor = new V8ScriptEngine();
 
-            interpretor.AddHostObject("clearEngine", new Action(() => InitializeCompiler(compiler)));
-
             interpretor.AddHostObject("notExecute", new Action(() => CompileMode = true));
+
+            interpretor.AddHostObject("clearEngine", new Action(() => InitializeCompiler(engine)));
+            interpretor.AddHostObject("compileEngine", new Action<object>((object value) => Show(engine.Compile(GetInput(value, engine)).Content)));
+            interpretor.AddHostObject("executeEngine", new Action<object>((object value) => Show(engine.Execute(GetInput(value, engine)))));
 
             interpretor.AddHostObject("closeScreen", new Action(() => IsAlive = false));
             interpretor.AddHostObject("clearScreen", new Action(() => Console.Clear()));
             interpretor.AddHostObject("printScreen", new Action<object>((object message) => Console.WriteLine(message)));
 
-            interpretor.AddHostObject("compiler", compiler);
-
-            interpretor.AddHostType("Compiler", typeof(MiMFa.Engine.Engine));
+            interpretor.AddHostType("Compiler", typeof(Engine));
             interpretor.AddHostType("console", typeof(Console));
 
-            compiler.ExecuteStage = new Stage((object input, MiMFa.Engine.Engine compiler) => interpretor.Evaluate((string)input));
+            interpretor.AddHostObject("engine", engine);
+
+            interpretor.AddHostObject("Core", new HostTypeCollection(
+                "mscorlib",
+                "System",
+                "System.Core",
+                "System.Xml",
+                "System.Linq",
+                "System.Data",
+                "System.Threading",
+                "System.Collections",
+                "System.Reflection",
+                "System.Web",
+                "System.Windows")
+            );
+
+            engine.ExecuteStage = new Stage((object input, Engine compiler) => interpretor.Evaluate((string)input));
         }
 
         private static void Show(object value)
         {
             if (value != null && !(value is Undefined) && !(value is VoidResult))
                 Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(value, Newtonsoft.Json.Formatting.Indented));
+        }
+        private static Input GetInput(object value, Engine engine)
+        {
+            if (value is Input)
+                return (Input)value;
+            else if (value is string)
+                if (engine.ResourceProvider.Exists((string)value))
+                    return new Input(engine.ResourceProvider.GetFileContents((string)value), (string)value);
+                else return new Input((string)value);
+            return new Input((string)value);
         }
 
         private static void Logging(MiMFa.Engine.Engine compiler, Core.LogEventArgs e)

@@ -18,11 +18,12 @@
 
 		<!-- ClearScript native package is win-x86 -->
 		<PlatformTarget>x86</PlatformTarget>
+		<AssemblyName>DEAL</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.ClearScript" Version="7.5.1.1" />
 		<PackageReference Include="Microsoft.ClearScript.V8" Version="7.5.1.1" />
-		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x86" Version="7.5.1.1" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 	</ItemGroup>
@@ -33,7 +34,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\MiMFa DEAL - Engine\MiMFa DEAL - Engine.csproj" />
-		<ProjectReference Include="..\MiMFa DEAL.JS - Compiler\MiMFa DEAL.JS.csproj" />
 		<ProjectReference Include="..\MiMFa DEAL.JS - Engine\MiMFa DEAL.JS - Engine.csproj" />
 	</ItemGroup>
 
@@ -41,7 +41,7 @@
 	  <None Update="Library\final.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Library\manual.djs">
+	  <None Update="Library\survival.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Library\initial.djs">

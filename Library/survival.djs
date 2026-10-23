@@ -1,0 +1,2 @@
+﻿write("> ");
+execute(readline());

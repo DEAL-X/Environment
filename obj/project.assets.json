@@ -2,6 +2,16 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "Microsoft.ClearScript/7.5.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.ClearScript.V8": "7.5.1.1",
+          "Microsoft.ClearScript.V8.ICUData": "7.5.1.1",
+          "Microsoft.ClearScript.V8.Native.win-x64": "7.5.1.1",
+          "Microsoft.ClearScript.V8.Native.win-x86": "7.5.1.1",
+          "Microsoft.ClearScript.Windows": "7.5.1.1"
+        }
+      },
       "Microsoft.ClearScript.Core/7.5.1.1": {
         "type": "package",
         "dependencies": {
@@ -40,6 +50,18 @@
           "lib/netstandard1.0/ClearScript.V8.ICUData.dll": {}
         }
       },
+      "Microsoft.ClearScript.V8.Native.win-x64/7.5.1.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.ClearScript.V8.Native.win-x64.props": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win-x64/native/ClearScriptV8.win-x64.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
       "Microsoft.ClearScript.V8.Native.win-x86/7.5.1.1": {
         "type": "package",
         "build": {
@@ -50,6 +72,30 @@
             "assetType": "native",
             "rid": "win-x86"
           }
+        }
+      },
+      "Microsoft.ClearScript.Windows/7.5.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.ClearScript.Windows.Core": "7.5.1.1"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/ClearScript.Windows.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/ClearScript.Windows.dll": {}
+        }
+      },
+      "Microsoft.ClearScript.Windows.Core/7.5.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.ClearScript.Core": "7.5.1.1"
+        },
+        "compile": {
+          "lib/net5.0/ClearScript.Windows.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/ClearScript.Windows.Core.dll": {}
         }
       },
       "Microsoft.CSharp/4.7.0": {
@@ -177,20 +223,6 @@
           "bin/placeholder/MiMFa DEAL - Engine.dll": {}
         }
       },
-      "MiMFa DEAL.JS/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.CSharp": "4.7.0",
-          "Newtonsoft.Json": "13.0.4"
-        },
-        "compile": {
-          "bin/placeholder/MiMFa DEAL.JS.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/MiMFa DEAL.JS.dll": {}
-        }
-      },
       "MiMFa DEAL.JS - Engine/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -209,6 +241,25 @@
     }
   },
   "libraries": {
+    "Microsoft.ClearScript/7.5.1.1": {
+      "sha512": "Ndl7gJiJzNLcazRJZyq7u6zXEKiZNcORFbeku7UjYCOLmJKZDzwFDigalOsJAsp32tef5bb65/xmsKtnYG2xVw==",
+      "type": "package",
+      "path": "microsoft.clearscript/7.5.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.txt",
+        "ReadMe.md",
+        "images/ClearScript.png",
+        "licenses/ClearScript/License.txt",
+        "licenses/V8/LICENSE",
+        "licenses/V8/LICENSE.fdlibm",
+        "licenses/V8/LICENSE.strongtalk",
+        "licenses/V8/LICENSE.v8",
+        "microsoft.clearscript.7.5.1.1.nupkg.sha512",
+        "microsoft.clearscript.nuspec"
+      ]
+    },
     "Microsoft.ClearScript.Core/7.5.1.1": {
       "sha512": "H3R4OaqQPfwxewnZcvTU6qUFyzJ05FchBD4IlO6Z0WO3iWh8PyAWHDcnt4FUmo/t0m40o8rkgnJ7g9pDT7pwJQ==",
       "type": "package",
@@ -292,6 +343,30 @@
         "microsoft.clearscript.v8.icudata.nuspec"
       ]
     },
+    "Microsoft.ClearScript.V8.Native.win-x64/7.5.1.1": {
+      "sha512": "N79bR+RG7FD8wv/tdXZuOLDx3YAQ+mSB5P0gcUNMGEFO4DljRSPlJcEzHLrPvrlPzNnc3aV6Rx2v5V3qordPJg==",
+      "type": "package",
+      "path": "microsoft.clearscript.v8.native.win-x64/7.5.1.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.txt",
+        "ReadMe.md",
+        "build/Microsoft.ClearScript.V8.Native.win-x64.props",
+        "images/ClearScript.png",
+        "licenses/ClearScript/License.txt",
+        "licenses/V8/LICENSE",
+        "licenses/V8/LICENSE.fdlibm",
+        "licenses/V8/LICENSE.strongtalk",
+        "licenses/V8/LICENSE.v8",
+        "microsoft.clearscript.v8.native.win-x64.7.5.1.1.nupkg.sha512",
+        "microsoft.clearscript.v8.native.win-x64.nuspec",
+        "runtimes/win-x64/native/ClearScriptV8.win-x64.dll",
+        "tools/Install.ps1",
+        "tools/Uninstall.ps1"
+      ]
+    },
     "Microsoft.ClearScript.V8.Native.win-x86/7.5.1.1": {
       "sha512": "Y2ThCEOpf0FI/CxoJcLTi04T8ghongf4xwOKglbqszhyDAdybg03hXoj59S8lg9Ym0ikXR2oh1+cZfskrX3eTA==",
       "type": "package",
@@ -314,6 +389,58 @@
         "runtimes/win-x86/native/ClearScriptV8.win-x86.dll",
         "tools/Install.ps1",
         "tools/Uninstall.ps1"
+      ]
+    },
+    "Microsoft.ClearScript.Windows/7.5.1.1": {
+      "sha512": "WRLieCurYIetStUMKAZS2bFZUzHYmfFs7uL/+xTrxNnoMymdkWg6wp2Rsy0M4rLlXOoz1E+sMzhJDi6G8Fz+DA==",
+      "type": "package",
+      "path": "microsoft.clearscript.windows/7.5.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.txt",
+        "ReadMe.md",
+        "images/ClearScript.png",
+        "lib/net462/ClearScript.Windows.dll",
+        "lib/net462/ClearScript.Windows.xml",
+        "lib/net5.0-windows7.0/ClearScript.Windows.dll",
+        "lib/net5.0-windows7.0/ClearScript.Windows.xml",
+        "lib/netcoreapp3.1/ClearScript.Windows.dll",
+        "lib/netcoreapp3.1/ClearScript.Windows.xml",
+        "licenses/ClearScript/License.txt",
+        "licenses/V8/LICENSE",
+        "licenses/V8/LICENSE.fdlibm",
+        "licenses/V8/LICENSE.strongtalk",
+        "licenses/V8/LICENSE.v8",
+        "microsoft.clearscript.windows.7.5.1.1.nupkg.sha512",
+        "microsoft.clearscript.windows.nuspec"
+      ]
+    },
+    "Microsoft.ClearScript.Windows.Core/7.5.1.1": {
+      "sha512": "ijhFErGPOWaTgCB9ywwqwyxtZhB15CC9OJ4UCjfWRgEHD7XFQ9r9UAdOfG1/C/nNFK7hELkFrxq9Dup3C3Npog==",
+      "type": "package",
+      "path": "microsoft.clearscript.windows.core/7.5.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.txt",
+        "ReadMe.md",
+        "images/ClearScript.png",
+        "lib/net462/ClearScript.Windows.Core.dll",
+        "lib/net462/ClearScript.Windows.Core.xml",
+        "lib/net5.0/ClearScript.Windows.Core.dll",
+        "lib/net5.0/ClearScript.Windows.Core.xml",
+        "lib/netcoreapp3.1/ClearScript.Windows.Core.dll",
+        "lib/netcoreapp3.1/ClearScript.Windows.Core.xml",
+        "lib/netstandard2.1/ClearScript.Windows.Core.dll",
+        "lib/netstandard2.1/ClearScript.Windows.Core.xml",
+        "licenses/ClearScript/License.txt",
+        "licenses/V8/LICENSE",
+        "licenses/V8/LICENSE.fdlibm",
+        "licenses/V8/LICENSE.strongtalk",
+        "licenses/V8/LICENSE.v8",
+        "microsoft.clearscript.windows.core.7.5.1.1.nupkg.sha512",
+        "microsoft.clearscript.windows.core.nuspec"
       ]
     },
     "Microsoft.CSharp/4.7.0": {
@@ -775,11 +902,6 @@
       "path": "../MiMFa DEAL - Engine/MiMFa DEAL - Engine.csproj",
       "msbuildProject": "../MiMFa DEAL - Engine/MiMFa DEAL - Engine.csproj"
     },
-    "MiMFa DEAL.JS/1.0.0": {
-      "type": "project",
-      "path": "../MiMFa DEAL.JS - Compiler/MiMFa DEAL.JS.csproj",
-      "msbuildProject": "../MiMFa DEAL.JS - Compiler/MiMFa DEAL.JS.csproj"
-    },
     "MiMFa DEAL.JS - Engine/1.0.0": {
       "type": "project",
       "path": "../MiMFa DEAL.JS - Engine/MiMFa DEAL.JS - Engine.csproj",
@@ -790,10 +912,9 @@
     "net5.0": [
       "MiMFa DEAL - Engine >= 1.0.0",
       "MiMFa DEAL.JS - Engine >= 1.0.0",
-      "MiMFa DEAL.JS >= 1.0.0",
       "Microsoft.CSharp >= 4.7.0",
+      "Microsoft.ClearScript >= 7.5.1.1",
       "Microsoft.ClearScript.V8 >= 7.5.1.1",
-      "Microsoft.ClearScript.V8.Native.win-x86 >= 7.5.1.1",
       "Newtonsoft.Json >= 13.0.4"
     ]
   },
@@ -835,9 +956,6 @@
             "D:\\Product\\Technology\\MiMFa DEAL\\MiMFa DEAL - Engine\\MiMFa DEAL - Engine.csproj": {
               "projectPath": "D:\\Product\\Technology\\MiMFa DEAL\\MiMFa DEAL - Engine\\MiMFa DEAL - Engine.csproj"
             },
-            "D:\\Product\\Technology\\MiMFa DEAL\\MiMFa DEAL.JS - Compiler\\MiMFa DEAL.JS.csproj": {
-              "projectPath": "D:\\Product\\Technology\\MiMFa DEAL\\MiMFa DEAL.JS - Compiler\\MiMFa DEAL.JS.csproj"
-            },
             "D:\\Product\\Technology\\MiMFa DEAL\\MiMFa DEAL.JS - Engine\\MiMFa DEAL.JS - Engine.csproj": {
               "projectPath": "D:\\Product\\Technology\\MiMFa DEAL\\MiMFa DEAL.JS - Engine\\MiMFa DEAL.JS - Engine.csproj"
             }
@@ -858,11 +976,11 @@
             "target": "Package",
             "version": "[4.7.0, )"
           },
-          "Microsoft.ClearScript.V8": {
+          "Microsoft.ClearScript": {
             "target": "Package",
             "version": "[7.5.1.1, )"
           },
-          "Microsoft.ClearScript.V8.Native.win-x86": {
+          "Microsoft.ClearScript.V8": {
             "target": "Package",
             "version": "[7.5.1.1, )"
           },

@@ -14,7 +14,7 @@ namespace MiMFa.Engine.DEAL.Environment
     public static class Program
     {
         public static bool Survive = false;
-        public static bool CompileMode = false;
+        public static Dictionary<string, object> Environment = new Dictionary<string, object>();
         public static Engine Engine;
 
         /// <summary>W
@@ -25,7 +25,6 @@ namespace MiMFa.Engine.DEAL.Environment
         {
             Console.OutputEncoding =
             Console.InputEncoding = System.Text.Encoding.UTF8;
-
             Initial();
             do
             {
@@ -39,10 +38,25 @@ namespace MiMFa.Engine.DEAL.Environment
             Engine = new JS.Engine();
 
             Survive = true;
-            var interpretor = new V8ScriptEngine();
+            var interpretor = new V8ScriptEngine(
+                V8ScriptEngineFlags.EnableArrayConversion |
+                V8ScriptEngineFlags.EnableDateTimeConversion |
+                V8ScriptEngineFlags.EnableDynamicModuleImports |
+                V8ScriptEngineFlags.EnableStringifyEnhancements |
+                V8ScriptEngineFlags.MarshalAllInt64AsBigInt |
+                V8ScriptEngineFlags.SetTimerResolution |
+                V8ScriptEngineFlags.UseCaseInsensitiveMemberBinding |
+                V8ScriptEngineFlags.UseSynchronizationContexts |
+                V8ScriptEngineFlags.EnableValueTaskPromiseConversion |
+                V8ScriptEngineFlags.EnableTaskPromiseConversion
+            );
+            interpretor.DocumentSettings.SearchPath = Engine.SourceDirectory;
+            interpretor.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
 
             interpretor.AddHostType("application", typeof(Program));
             interpretor.AddHostType("console", typeof(Console));
+            interpretor.AddHostType("Engine", typeof(DEAL.JS.Engine));
+            interpretor.AddHostObject("engine", Engine);
 
             interpretor.AddHostObject("Core", new HostTypeCollection(
                     "mscorlib",
@@ -76,7 +90,9 @@ namespace MiMFa.Engine.DEAL.Environment
         }
         public static void Survival()
         {
-            ExecuteFile(Engine.SourceDirectory + "survival.djs");
+            var path = Engine.SourceDirectory + "survival.djs";
+            if(Engine.ResourceProvider.Exists(path)) ExecuteFile(path);
+            else Execute(Console.ReadLine());
         }
         public static void Final()
         {
@@ -86,14 +102,13 @@ namespace MiMFa.Engine.DEAL.Environment
         public static void ExecuteFile(string path)
         {
             string code;
-            if (File.Exists(path) && !string.IsNullOrWhiteSpace(code = File.ReadAllText(path))) Execute(code);
+            if (File.Exists(path) && !string.IsNullOrWhiteSpace(code = File.ReadAllText(path))) Execute(code, path);
         }
-        public static void Execute(string code)
+        public static void Execute(string code, string path = null)
         {
             try
             {
-                if (CompileMode) Console.Error.WriteLine(Engine.Compile(new Input(code)).Content);
-                else Show(Engine.Execute(new Input(code)));
+                Show(Engine.Execute(new Input(code, path)));
             }
             catch (Exception ex) { Console.Error.WriteLine(ex.Message); }
         }

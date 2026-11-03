@@ -61,7 +61,6 @@ namespace MiMFa.Engine.DEAL.Environment
 
             interpretor.AddHostType("application", typeof(Program));
             interpretor.AddHostType("console", typeof(Console));
-            interpretor.AddHostObject("engine", Engine);
 
             interpretor.AddHostObject("Core", new HostTypeCollection(
                     "mscorlib",

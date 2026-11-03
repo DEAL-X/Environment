@@ -31,8 +31,11 @@ command snippet() => {
 	else if(mode > 0 || (mode < 1 && confirm(`Do you want to compile that snippet instead?`))) return compile(path);
 }
 
-// To restart application
-command reset() => application.Initial();
+// To restart the application
+command reset() => {
+	application.Final();
+	application.Initial();
+}
 
 // To open an application
 command #open::string() => Core.System.Diagnostics.Process.Start(...arguments);

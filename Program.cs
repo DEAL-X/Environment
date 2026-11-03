@@ -15,7 +15,7 @@ namespace MiMFa.Engine.DEAL.Environment
     {
         public static bool Survive = false;
         public static Dictionary<string, object> Environment = new Dictionary<string, object>();
-        public static Engine Engine;
+        public static JavaScript.Engine Engine;
 
 
         /// <summary>W

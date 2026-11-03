@@ -17,6 +17,7 @@ namespace MiMFa.Engine.DEAL.Environment
         public static Dictionary<string, object> Environment = new Dictionary<string, object>();
         public static Engine Engine;
 
+
         /// <summary>W
         /// The main entry point for the application.
         /// </summary>
@@ -25,8 +26,12 @@ namespace MiMFa.Engine.DEAL.Environment
         {
             Console.OutputEncoding =
             Console.InputEncoding = System.Text.Encoding.UTF8;
+
             Initial();
-            do
+            if (args.Length > 0)
+                foreach (var arg in args)
+                    ExecuteFile(arg);
+            else do
             {
                 Survival();
             } while (Survive);
@@ -50,12 +55,12 @@ namespace MiMFa.Engine.DEAL.Environment
                 V8ScriptEngineFlags.EnableValueTaskPromiseConversion |
                 V8ScriptEngineFlags.EnableTaskPromiseConversion
             );
+
             interpretor.DocumentSettings.SearchPath = Engine.SourceDirectory;
             interpretor.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
 
             interpretor.AddHostType("application", typeof(Program));
             interpretor.AddHostType("console", typeof(Console));
-            interpretor.AddHostType("Engine", typeof(DEAL.JS.Engine));
             interpretor.AddHostObject("engine", Engine);
 
             interpretor.AddHostObject("Core", new HostTypeCollection(
@@ -97,6 +102,7 @@ namespace MiMFa.Engine.DEAL.Environment
         public static void Final()
         {
             ExecuteFile(Engine.SourceDirectory + "final.djs");
+            Engine.Dispose();
         }
 
         public static void ExecuteFile(string path)

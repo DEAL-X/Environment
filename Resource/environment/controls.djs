@@ -1,6 +1,6 @@
 ﻿use deal;
 
-command snippetPath = 'Library\\snippet.djs';
+command snippetPath = 'Resource\\snippet.djs';
 
 command evaluate(value = null) => application.Engine.Execute(value ?? snippetPath);
 command compile(value = null) => application.Engine.Compile(value ?? snippetPath).Content;
@@ -36,19 +36,3 @@ command reset() => {
 	application.Final();
 	application.Initial();
 }
-
-// To open an application
-command #open::string() => Core.System.Diagnostics.Process.Start(...arguments);
-
-// To open an application as a dialog
-command #dialog::string() => {
-	open(...arguments).WaitForExit();
-}
-
-// To close the application
-command close() => arguments.length > 0? Core.System.Diagnostics.Process.GetProcessById(...arguments).Kill() : application.Close();
-
-// To save an object
-command save(object = null, path = null) => will local write(path ?? temp.file, object);
-command append(object = null, path = null) => will local append(path ?? temp.file, object);
-command prepend(object = null, path = null) => will local prepend(path ?? temp.file, object);

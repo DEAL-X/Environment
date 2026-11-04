@@ -38,25 +38,34 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Library\environment\controls.djs">
+	  <None Update="Resource\environment\resources.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Library\environment\console.djs">
+	  <None Update="Resource\environment\tasks.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Library\environment\dialogs.djs">
+	  <None Update="Resource\environment\controls.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Library\snippet.djs">
+	  <None Update="Resource\environment\displays.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Library\final.djs">
+	  <None Update="Resource\environment\log.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Library\~survival.djs">
+	  <None Update="Resource\environment\dialogs.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Library\initial.djs">
+	  <None Update="Resource\snippet.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Resource\final.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Resource\survival.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Resource\initial.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

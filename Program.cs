@@ -60,7 +60,7 @@ namespace MiMFa.Engine.DEAL.Environment
                 V8ScriptEngineFlags.EnableTaskPromiseConversion
             );
 
-            interpretor.DocumentSettings.SearchPath = Engine.ResourceDirectory;
+            interpretor.DocumentSettings.SearchPath = System.Environment.CurrentDirectory + Path.DirectorySeparatorChar;
             interpretor.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
 
             interpretor.AddHostType("application", typeof(Program));
@@ -94,18 +94,26 @@ namespace MiMFa.Engine.DEAL.Environment
             Console.WriteLine("Visit the DEAL project at https://www.deal.mimfa.net.");
             Console.WriteLine("");
 
-            ExecuteFile(Engine.ResourceDirectory + "initial.djs");
+            ExecuteFile(Engine.ResourceProvider.Resolve("initial.djs"));
         }
         public static void Survival()
         {
-            var path = Engine.ResourceDirectory + "survival.djs";
-            if(Engine.ResourceProvider.Exists(path)) ExecuteFile(path);
-            else Execute(Console.ReadLine());
+            var path = Engine.ResourceProvider.Resolve("survival.djs");
+            if (Engine.ResourceProvider.Exists(path)) ExecuteFile(path);
+            else
+            {
+                Console.Write("> ");
+                Execute(Console.ReadLine());
+            }
         }
         public static void Final()
         {
-            ExecuteFile(Engine.ResourceDirectory + "final.djs");
-            Engine.Dispose();
+            var path = Engine.ResourceProvider.Resolve("final.djs");
+            if (Engine.ResourceProvider.Exists(path)) ExecuteFile(path);
+            else
+            {
+                Engine.Dispose();
+            }
         }
 
         public static void ExecuteFile(string path)

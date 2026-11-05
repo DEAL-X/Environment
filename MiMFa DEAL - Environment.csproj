@@ -22,6 +22,52 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="environment\controls.djs" />
+	  <None Remove="environment\dialogs.djs" />
+	  <None Remove="environment\displays.djs" />
+	  <None Remove="environment\log.djs" />
+	  <None Remove="environment\resources.djs" />
+	  <None Remove="environment\tasks.djs" />
+	  <None Remove="final.djs" />
+	  <None Remove="initial.djs" />
+	  <None Remove="snippet.djs" />
+	  <None Remove="~survival.djs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="environment\controls.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="environment\dialogs.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="environment\displays.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="environment\log.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="environment\resources.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="environment\tasks.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="final.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="initial.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="snippet.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="~survival.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.ClearScript" Version="7.5.1.1" />
 		<PackageReference Include="Microsoft.ClearScript.V8" Version="7.5.1.1" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
@@ -35,39 +81,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\MiMFa DEAL - Engine\MiMFa DEAL - Engine.csproj" />
 		<ProjectReference Include="..\MiMFa DEAL.JS - Engine\MiMFa DEAL.JS - Engine.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="Resource\environment\resources.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Resource\environment\tasks.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Resource\environment\controls.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Resource\environment\displays.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Resource\environment\log.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Resource\environment\dialogs.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Resource\snippet.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Resource\final.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Resource\survival.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Resource\initial.djs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
 	</ItemGroup>
 
 </Project>

@@ -12,4 +12,6 @@ Log.message = function (title = null, message = null) {
 Log.subject = function (message = null) => Log.message(message, "");
 Log.error = function (message = null) => Log.message("Error:\t", message);
 Log.success = function (message = null) => Log.message("Success:\t", message);
+Log.warn = function (message = null) => Log.message("Warning:\t", message);
+Log.warning = function (message = null) => Log.warn(message);
 Log.info = function (message = null) => Log.message(null, message);

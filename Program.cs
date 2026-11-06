@@ -94,12 +94,12 @@ namespace MiMFa.Engine.DEAL.Environment
             Console.WriteLine("Visit the DEAL project at https://www.deal.mimfa.net.");
             Console.WriteLine("");
 
-            ExecuteFile(Engine.ResourceProvider.Resolve("initial.djs"));
+            ExecuteFile(Engine.Resource.Resolve("initial.djs"));
         }
         public static void Survival()
         {
-            var path = Engine.ResourceProvider.Resolve("survival.djs");
-            if (Engine.ResourceProvider.Exists(path)) ExecuteFile(path);
+            var path = Engine.Resource.Resolve("survival.djs");
+            if (Engine.Resource.Exists(path)) ExecuteFile(path);
             else
             {
                 Console.Write("> ");
@@ -108,8 +108,8 @@ namespace MiMFa.Engine.DEAL.Environment
         }
         public static void Final()
         {
-            var path = Engine.ResourceProvider.Resolve("final.djs");
-            if (Engine.ResourceProvider.Exists(path)) ExecuteFile(path);
+            var path = Engine.Resource.Resolve("final.djs");
+            if (Engine.Resource.Exists(path)) ExecuteFile(path);
             else
             {
                 Engine.Dispose();

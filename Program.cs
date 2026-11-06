@@ -132,6 +132,15 @@ namespace MiMFa.Engine.DEAL.Environment
 
         public static void Display(object value)
         {
+            // Resolve JavaScript Promises converted to .NET Tasks.
+            while (value is Task task && DisplayMode > 0)
+            {
+                task.GetAwaiter().GetResult();
+
+                var result = task.GetType().GetProperty("Result");
+                value = result?.GetValue(task);
+            }
+
             switch (DisplayMode)
             {
                 case 0:

@@ -92,9 +92,10 @@ namespace MiMFa.Engine.DEAL.Environment
             Console.WriteLine(title);
             Console.WriteLine("©️ MiMFa Corporation. All rights reserved.");
             Console.WriteLine("Visit the DEAL project at https://www.deal.mimfa.net.");
-            Console.WriteLine("");
 
             ExecuteFile(Engine.Resource.Resolve("initial.djs"));
+            if(Engine.Errors.Count > 0) Display(Engine.Errors);
+            else Console.WriteLine("");
         }
         public static void Survival()
         {

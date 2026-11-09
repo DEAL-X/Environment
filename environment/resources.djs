@@ -1,8 +1,8 @@
 ﻿use deal;
 
-command open() => will application.Engine.Resource.GetContents(...arguments);
+command OPEN() => will application.Engine.Resource.GetContents(...arguments);
 
-command save(object = null, path = null) => will application.Engine.Resource.SetFileContents(path ?? temp.file, Make.string(object));
+command SAVE(object = null, path = null) => will application.Engine.Resource.SetFileContents(path ?? temp.file, MAKE.string(object));
 
-command append(object = null, path = null) => will application.Engine.Resource.AppendFileContents(path ?? temp.file, Make.string(object));
-command prepend(object = null, path = null) => will application.Engine.Resource.PrependFileContents(path ?? temp.file, Make.string(object));
+command APPEND(object = null, path = null) => will application.Engine.Resource.AppendFileContents(path ?? temp.file, MAKE.string(object));
+command PREPEND(object = null, path = null) => will application.Engine.Resource.PrependFileContents(path ?? temp.file, MAKE.string(object));

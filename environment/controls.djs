@@ -1,11 +1,7 @@
 ﻿use deal;
 
-command snippetPath = 'snippet.djs';
-
-command evaluate(value = null) => application.Engine.Execute(value ?? snippetPath);
-command compile(value = null) => application.Engine.Compile(value ?? snippetPath).Content;
-command execute(value = null) => print(application.Engine.Execute(value ?? snippetPath));
-command snippet() => {
+command SnippetPath = application.Engine.Resource.TempDirectory + 'snippet.djs';
+command Snippet() => {
 	let path = null;
 	let mode = 0;
 	if(arguments.length > 1){
@@ -31,6 +27,10 @@ command snippet() => {
 	if(mode > 1 || (mode < 1 && confirm(`Are you sure to evaluate your snippet on \"${Local.name(path)}\"?`))) return evaluate(path);
 	else if(mode > 0 || (mode < 1 && confirm(`Do you want to compile that snippet instead?`))) return compile(path);
 }
+
+command evaluate(value = null) => application.Engine.Execute(value ?? snippetPath);
+command compile(value = null) => application.Engine.Compile(value ?? snippetPath).Content;
+command execute(value = null) => print(application.Engine.Execute(value ?? snippetPath));
 
 // To restart the application
 command reset() => {

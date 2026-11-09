@@ -22,12 +22,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="environment\controls.djs" />
-	  <None Remove="environment\dialogs.djs" />
-	  <None Remove="environment\displays.djs" />
-	  <None Remove="environment\log.djs" />
-	  <None Remove="environment\resources.djs" />
-	  <None Remove="environment\tasks.djs" />
+	  <None Remove="Environment\controls.djs" />
+	  <None Remove="Environment\dialogs.djs" />
+	  <None Remove="Environment\displays.djs" />
+	  <None Remove="Environment\log.djs" />
+	  <None Remove="Environment\resources.djs" />
+	  <None Remove="Environment\tasks.djs" />
 	  <None Remove="final.djs" />
 	  <None Remove="initial.djs" />
 	  <None Remove="snippet.djs" />
@@ -35,22 +35,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="environment\controls.djs">
+	  <Content Include="Environment\controls.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\dialogs.djs">
+	  <Content Include="Environment\dialogs.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\displays.djs">
+	  <Content Include="Environment\displays.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\log.djs">
+	  <Content Include="Environment\log.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\resources.djs">
+	  <Content Include="Environment\resources.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\tasks.djs">
+	  <Content Include="Environment\tasks.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="final.djs">
@@ -59,7 +59,7 @@
 	  <Content Include="initial.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="snippet.djs">
+	  <Content Include="Temporary\snippet.djs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="~survival.djs">

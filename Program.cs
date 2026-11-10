@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.ClearScript;
 using Microsoft.ClearScript.JavaScript;
 using Microsoft.ClearScript.V8;
+using MiMFa.Engine.Core;
 using MiMFa.Engine.Put;
 
 namespace MiMFa.Engine.DEAL.Environment
@@ -94,8 +95,7 @@ namespace MiMFa.Engine.DEAL.Environment
             Console.WriteLine("Visit the DEAL project at https://www.deal.mimfa.net.");
 
             ExecuteFile(Engine.Resource.Resolve("initial.djs"));
-            if(Engine.Errors.Count > 0) Display(Engine.Errors);
-            else Console.WriteLine("");
+            Console.WriteLine("");
         }
         public static void Survival()
         {
@@ -167,7 +167,13 @@ namespace MiMFa.Engine.DEAL.Environment
         public static void DisplayObject(object value)
         {
             if (!(value is Undefined) && !(value is VoidResult))
-                Console.WriteLine(value);
+                if (value is LogEventArgs)
+                    Console.WriteLine(((LogEventArgs)value).ToString());
+                else if (value is IEnumerable<LogEventArgs>)
+                    foreach (var item in value as IEnumerable<LogEventArgs>)
+                        Console.WriteLine(item.ToString());
+                else
+                    Console.WriteLine(value);
         }
         public static void DisplayJson(object value, Newtonsoft.Json.Formatting? flags = null)
         {
@@ -176,7 +182,11 @@ namespace MiMFa.Engine.DEAL.Environment
         }
         public static void DisplayHybrid(object value)
         {
-            if (value is string) DisplayObject(value);
+            if (
+                value is string ||
+                value is LogEventArgs ||
+                value is IEnumerable<LogEventArgs>
+            ) DisplayObject(value);
             else DisplayJson(value);
         }
 

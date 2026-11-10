@@ -1,17 +1,17 @@
-﻿use deal;
+﻿use deal/core;
 
 // To clear screen
-command CLS() => console.Clear();
+command cls() => console.Clear();
 
 // To convert then write an object
-command PRINT(object = null) => application.DisplayHybrid(object);
+command print(object = null) => application.DisplayHybrid(object);
 
 // To write a message
-command WRITE(message = null) => console.Write(message??"");
+command write(message = null) => console.Write(message??"");
 // To write a message line
-command WRITELINE(message = null) => console.WriteLine(message??"");
+command writeLine(message = null) => console.WriteLine(message??"");
 
 // To read a character
-command READ() => console.ReadKey();
+command read() => console.ReadKey();
 // To read a line
-command READLINE() => console.ReadLine();
+command readLine() => console.ReadLine();

@@ -1,9 +1,9 @@
-﻿use deal;
+﻿use deal/data/log;
 use environment/console;
 
-LOG.display = function (title = null, message = null) => writeLine(LOG.message(title, message));
-LOG.subject = function (message = null) => LOG.display(message, "");
-LOG.error = function (message = null) => LOG.display("Error", message);
-LOG.success = function (message = null) => LOG.display("Success", message);
-LOG.warn = function (message = null) => LOG.display("Warning", message);
-LOG.info = function (message = null) => LOG.display(null, message);
+Log.display = function (title = null, message = null) => writeLine(Log.message(title, message));
+Log.subject = function (message = null) => Log.display(message, "");
+Log.error = function (message = null) => Log.display("Error", message);
+Log.success = function (message = null) => Log.display("Success", message);
+Log.warn = function (message = null) => Log.display("Warning", message);
+Log.info = function (message = null) => Log.display(null, message);

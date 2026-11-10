@@ -1,8 +1,8 @@
-﻿use deal;
+﻿use deal\make;
 
-command OPEN() => will application.Engine.Resource.GetContents(...arguments);
+command open() => will application.Engine.Resource.GetFileText(...arguments);
 
-command SAVE(object = null, path = null) => will application.Engine.Resource.SetFileContents(path ?? temp.file, MAKE.string(object));
+command save(object = null, path = null) => will application.Engine.Resource.SetFileText(path ?? temp.file, Make.string(object));
 
-command APPEND(object = null, path = null) => will application.Engine.Resource.AppendFileContents(path ?? temp.file, MAKE.string(object));
-command PREPEND(object = null, path = null) => will application.Engine.Resource.PrependFileContents(path ?? temp.file, MAKE.string(object));
+command append(object = null, path = null) => will application.Engine.Resource.AppendFileText(path ?? temp.file, Make.string(object));
+command prepend(object = null, path = null) => will application.Engine.Resource.PrependFileText(path ?? temp.file, Make.string(object));

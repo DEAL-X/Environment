@@ -17,6 +17,7 @@ namespace MiMFa.Engine.DEAL.Environment
         public static int DisplayMode { get; set; } = 9;
         public static bool Survive { get; set; } = false;
         public static JavaScript.Engine Engine { get; set; }
+        public static ScriptEngine Interpreter { get; set; }
         public static Dictionary<string, object> Environment { get; set; }  = new Dictionary<string, object>();
         public static object Add(string key, object value = null) => Environment[key] = value;
         public static bool Remove(string key) => Environment.Remove(key);
@@ -48,7 +49,7 @@ namespace MiMFa.Engine.DEAL.Environment
             Engine = new JS.Engine();
 
             Survive = true;
-            var interpretor = new V8ScriptEngine(
+            Interpreter = new V8ScriptEngine(
                 V8ScriptEngineFlags.EnableArrayConversion |
                 V8ScriptEngineFlags.EnableDateTimeConversion |
                 V8ScriptEngineFlags.EnableDynamicModuleImports |
@@ -61,13 +62,13 @@ namespace MiMFa.Engine.DEAL.Environment
                 V8ScriptEngineFlags.EnableTaskPromiseConversion
             );
 
-            interpretor.DocumentSettings.SearchPath = System.Environment.CurrentDirectory + Path.DirectorySeparatorChar;
-            interpretor.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
+            Interpreter.DocumentSettings.SearchPath = System.Environment.CurrentDirectory + Path.DirectorySeparatorChar;
+            Interpreter.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
 
-            interpretor.AddHostType("application", typeof(Program));
-            interpretor.AddHostType("console", typeof(Console));
+            Interpreter.AddHostType("application", typeof(Program));
+            Interpreter.AddHostType("console", typeof(Console));
 
-            interpretor.AddHostObject("Core", new HostTypeCollection(
+            Interpreter.AddHostObject("Core", new HostTypeCollection(
                     "mscorlib",
                     "System",
                     "System.Core",
@@ -85,7 +86,7 @@ namespace MiMFa.Engine.DEAL.Environment
                )
             );
 
-            Engine.ExecuteStage = new Stage.Stage((object input, Engine compiler) => interpretor.Evaluate((string)input));
+            Engine.ExecuteStage = new Stage.Stage((object input, Engine compiler) => Interpreter.Evaluate((string)input));
 
             Engine.Logged += Logging;
             string title = $"MiMFa DEAL.JS [Version {Engine.Version}]";
@@ -113,7 +114,9 @@ namespace MiMFa.Engine.DEAL.Environment
             if (Engine.Resource.Exists(path)) ExecuteFile(path);
             else
             {
-                Engine.Dispose();
+                Interpreter?.CollectGarbage(true);
+                Interpreter?.Dispose();
+                Engine?.Dispose();
             }
         }
 

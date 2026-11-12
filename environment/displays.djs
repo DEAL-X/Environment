@@ -1,8 +1,5 @@
 ﻿use deal/core;
 
-// To clear screen
-command cls() => console.Clear();
-
 // To convert then write an object
 command print(object = null) => application.DisplayHybrid(object);
 
@@ -10,6 +7,9 @@ command print(object = null) => application.DisplayHybrid(object);
 command write(message = null) => console.Write(message??"");
 // To write a message line
 command writeLine(message = null) => console.WriteLine(message??"");
+
+// To clear screen
+command clear() => console.Clear();
 
 // To read a character
 command read() => console.ReadKey();

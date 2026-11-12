@@ -15,7 +15,7 @@ namespace MiMFa.Engine.DEAL.Environment
     public static class Program
     {
         public static int DisplayMode { get; set; } = 9;
-        public static bool Survive { get; set; } = false;
+        public static bool IsAlive { get; set; } = false;
         public static JavaScript.Engine Engine { get; set; }
         public static ScriptEngine Interpreter { get; set; }
         public static Dictionary<string, object> Environment { get; set; }  = new Dictionary<string, object>();
@@ -36,11 +36,11 @@ namespace MiMFa.Engine.DEAL.Environment
             Initial();
             if (args.Length > 0)
                 foreach (var arg in args)
-                    ExecuteFile(arg);
+                    Execute(arg);
             else do
             {
                 Survival();
-            } while (Survive);
+            } while (IsAlive);
             Final();
         }
 
@@ -48,7 +48,7 @@ namespace MiMFa.Engine.DEAL.Environment
         {
             Engine = new JS.Engine();
 
-            Survive = true;
+            IsAlive = true;
             Interpreter = new V8ScriptEngine(
                 V8ScriptEngineFlags.EnableArrayConversion |
                 V8ScriptEngineFlags.EnableDateTimeConversion |
@@ -68,7 +68,7 @@ namespace MiMFa.Engine.DEAL.Environment
             Interpreter.AddHostType("application", typeof(Program));
             Interpreter.AddHostType("console", typeof(Console));
 
-            Interpreter.AddHostObject("Core", new HostTypeCollection(
+            Interpreter.AddHostObject("core", new HostTypeCollection(
                     "mscorlib",
                     "System",
                     "System.Core",
@@ -95,13 +95,15 @@ namespace MiMFa.Engine.DEAL.Environment
             Console.WriteLine("©️ MiMFa Corporation. All rights reserved.");
             Console.WriteLine("Visit the DEAL project at https://www.deal.mimfa.net.");
 
-            ExecuteFile(Engine.Resource.Resolve("initial.djs"));
+            var path = Engine.Resource.Normalize("initial.djs");
+            if (Engine.Resource.Exists(path)) Execute(path);
+            Execute(Engine.Resource.Normalize("initial.djs"));
             Console.WriteLine("");
         }
         public static void Survival()
         {
-            var path = Engine.Resource.Resolve("survival.djs");
-            if (Engine.Resource.Exists(path)) ExecuteFile(path);
+            var path = Engine.Resource.Normalize("survival.djs");
+            if (Engine.Resource.Exists(path)) Execute(path);
             else
             {
                 Console.Write("> ");
@@ -110,8 +112,8 @@ namespace MiMFa.Engine.DEAL.Environment
         }
         public static void Final()
         {
-            var path = Engine.Resource.Resolve("final.djs");
-            if (Engine.Resource.Exists(path)) ExecuteFile(path);
+            var path = Engine.Resource.Normalize("final.djs");
+            if (Engine.Resource.Exists(path)) Execute(path);
             else
             {
                 Interpreter?.CollectGarbage(true);
@@ -120,18 +122,50 @@ namespace MiMFa.Engine.DEAL.Environment
             }
         }
 
-        public static void ExecuteFile(string path)
+        public static void Restart()
         {
-            string code;
-            if (File.Exists(path) && !string.IsNullOrWhiteSpace(code = File.ReadAllText(path))) Execute(code, path);
+            Clear();
+            Reset();
         }
-        public static void Execute(string code, string path = null)
+        public static void Reset()
+        {
+            Final();
+            Initial();
+        }
+        public static void Clear()
+        {
+            Console.Clear();
+        }
+        public static void Stop()
+        {
+            IsAlive = false;
+        }
+
+        public static string Compile(string value)
         {
             try
             {
-                Display(Engine.Execute(new Input(code, path)));
+                return Engine.Compile(value).Content;
             }
-            catch (Exception ex) { Console.Error.WriteLine(ex.Message); }
+            catch (Exception ex) { Engine.OnLogged(ex.Message, LogStatus.Error); }
+            return null;
+        }
+        public static object Evaluate(string value)
+        {
+            try
+            {
+                return Engine.Execute(value);
+            }
+            catch (Exception ex) { Engine.OnLogged(ex.Message, LogStatus.Error); }
+            return null;
+        }
+        public static void Execute(string value)
+        {
+            try
+            {
+                Display(Engine.Execute(value));
+            }
+            catch (Exception ex) { Engine.OnLogged(ex.Message, LogStatus.Error); }
         }
 
         public static void Display(object value)
@@ -193,10 +227,6 @@ namespace MiMFa.Engine.DEAL.Environment
             else DisplayJson(value);
         }
 
-        public static void Close()
-        {
-            Survive = false;
-        }
 
         private static void Logging(Engine engine, Core.LogEventArgs e)
         {

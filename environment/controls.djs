@@ -1,4 +1,5 @@
 ﻿use deal/core;
+use deal/core;
 
 command snippetPath = application.Engine.Resource.TempDirectory + 'snippet.djs';
 command snippet() => {
@@ -22,18 +23,12 @@ command snippet() => {
 	if(isEmpty(path)) path = prompt("Please indicate an address for the snippet file:", snippetPath);
 	if(!local exists(path) and local create(path))
 		writeLine(`The file \"${path}\" is created successfully!`);
-	run("notepad", path);
+	stay("notepad", path);
 
 	if(mode > 1 || (mode < 1 && confirm(`Are you sure to evaluate your snippet on \"${Local.name(path)}\"?`))) return evaluate(path);
 	else if(mode > 0 || (mode < 1 && confirm(`Do you want to compile that snippet instead?`))) return compile(path);
 }
 
-command evaluate(value = null) => application.Engine.Execute(value ?? snippetPath);
-command compile(value = null) => application.Engine.Compile(value ?? snippetPath).Content;
-command execute(value = null) => print(application.Engine.Execute(value ?? snippetPath));
-
-// To restart the application
-command reset() => {
-	application.Final();
-	application.Initial();
-}
+command evaluate(value = null) => application.Evaluate(value ?? snippetPath);
+command compile(value = null) => application.Compile(value ?? snippetPath);
+command execute(value = null) => application.Execute(value ?? snippetPath);

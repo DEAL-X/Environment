@@ -1,5 +1,5 @@
 ﻿use deal/data/log;
-use environment/console;
+use console;
 
 Log.display = function (title = null, message = null) => writeLine(Log.message(title, message));
 Log.subject = function (message = null) => Log.display(message, "");

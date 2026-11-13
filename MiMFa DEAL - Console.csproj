@@ -22,12 +22,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="environment\controls.djs" />
-	  <None Remove="environment\dialogs.djs" />
-	  <None Remove="environment\displays.djs" />
-	  <None Remove="environment\log.djs" />
-	  <None Remove="environment\resources.djs" />
-	  <None Remove="environment\tasks.djs" />
+	  <None Remove="Console\.djs" />
+	  <None Remove="Console\controls.djs" />
+	  <None Remove="Console\dialogs.djs" />
+	  <None Remove="Console\displays.djs" />
+	  <None Remove="Console\log.djs" />
+	  <None Remove="Console\resources.djs" />
+	  <None Remove="Console\tasks.djs" />
 	  <None Remove="final.djs" />
 	  <None Remove="initial.djs" />
 	  <None Remove="snippet.djs" />
@@ -35,35 +36,38 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="environment\controls.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <Content Include="Console\.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\dialogs.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <Content Include="Console\controls.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\displays.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <Content Include="Console\dialogs.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\log.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <Content Include="Console\displays.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\resources.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <Content Include="Console\log.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="environment\tasks.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <Content Include="Console\resources.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Console\tasks.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="final.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="initial.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="snippet.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <Content Include="Temporary\snippet.djs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="~survival.djs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>
 

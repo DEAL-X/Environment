@@ -1,5 +1,5 @@
 ﻿use deal/core;
-use environment/console;
+use console;
 
 // To write a message line
 command alert(message = null) {

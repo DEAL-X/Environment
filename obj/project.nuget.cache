@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PpeZ1gO+yuDae8jwamwcltgAfEqX307ZFJ1uMjRp2uiXPCEf5WI4wRoLUzMW99QiNIb455qlbRDm7lT3sWSV/w==",
+  "dgSpecHash": "HSkFiikoACCCn4VEzGyTuG78XYgbzY4u2lMSpFmOCg0quSsUSd4k6+tpEJR4gd9Ci3FhLC2JoOUuFOpp9QAszw==",
   "success": true,
-  "projectFilePath": "D:\\Product\\Technology\\MiMFa DEAL\\MiMFa DEAL - Environment\\MiMFa DEAL - Environment.csproj",
+  "projectFilePath": "D:\\Product\\Technology\\MiMFa DEAL\\MiMFa DEAL - Console\\MiMFa DEAL - Console.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MiMFa\\.nuget\\packages\\microsoft.clearscript\\7.5.1.1\\microsoft.clearscript.7.5.1.1.nupkg.sha512",
     "C:\\Users\\MiMFa\\.nuget\\packages\\microsoft.clearscript.core\\7.5.1.1\\microsoft.clearscript.core.7.5.1.1.nupkg.sha512",

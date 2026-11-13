@@ -1,7 +1,7 @@
 ﻿use deal/data;
 use deal/make;
 use deal/select;
-use environment;
+use console;
 
 print("DEAL's core, data, make and select modules are used!");
 

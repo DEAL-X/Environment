@@ -97,7 +97,6 @@ namespace MiMFa.Engine.DEAL.Environment
 
             var path = Engine.Resource.Normalize("initial.djs");
             if (Engine.Resource.Exists(path)) Execute(path);
-            Execute(Engine.Resource.Normalize("initial.djs"));
             Console.WriteLine("");
         }
         public static void Survival()

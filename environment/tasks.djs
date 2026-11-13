@@ -6,6 +6,12 @@ command #start::string() {
 	Core.System.Diagnostics.Process.Start(...arguments);
 }
 
+// To open an application or restart current-one
+command #restart::string() {
+	if(arguments.length < 1) return application.Restart();
+	Core.System.Diagnostics.Process.Start(...arguments);
+}
+
 // To open an application as a dialog
 command #stay::string() {
 	if(arguments.length < 1) return;

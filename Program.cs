@@ -10,7 +10,7 @@ using Microsoft.ClearScript.V8;
 using MiMFa.Engine.Core;
 using MiMFa.Engine.Put;
 
-namespace MiMFa.Engine.DEAL.Environment
+namespace MiMFa.Engine.DEAL.Console
 {
     public static class Program
     {
@@ -30,8 +30,8 @@ namespace MiMFa.Engine.DEAL.Environment
         [STAThread]
         static void Main(params string[] args)
         {
-            Console.OutputEncoding =
-            Console.InputEncoding = System.Text.Encoding.UTF8;
+            System.Console.OutputEncoding =
+            System.Console.InputEncoding = System.Text.Encoding.UTF8;
 
             Initial();
             if (args.Length > 0)
@@ -66,7 +66,7 @@ namespace MiMFa.Engine.DEAL.Environment
             Interpreter.DocumentSettings.AccessFlags = DocumentAccessFlags.EnableFileLoading;
 
             Interpreter.AddHostType("application", typeof(Program));
-            Interpreter.AddHostType("console", typeof(Console));
+            Interpreter.AddHostType("console", typeof(System.Console));
 
             Interpreter.AddHostObject("core", new HostTypeCollection(
                     "mscorlib",
@@ -90,14 +90,14 @@ namespace MiMFa.Engine.DEAL.Environment
 
             Engine.Logged += Logging;
             string title = $"MiMFa DEAL.JS [Version {Engine.Version}]";
-            Console.Title = title;
-            Console.WriteLine(title);
-            Console.WriteLine("©️ MiMFa Corporation. All rights reserved.");
-            Console.WriteLine("Visit the DEAL project at https://www.deal.mimfa.net.");
+            System.Console.Title = title;
+            System.Console.WriteLine(title);
+            System.Console.WriteLine("©️ MiMFa Corporation. All rights reserved.");
+            System.Console.WriteLine("Visit the DEAL project at https://www.deal.mimfa.net.");
 
             var path = Engine.Resource.Normalize("initial.djs");
             if (Engine.Resource.Exists(path)) Execute(path);
-            Console.WriteLine("");
+            System.Console.WriteLine("");
         }
         public static void Survival()
         {
@@ -105,8 +105,8 @@ namespace MiMFa.Engine.DEAL.Environment
             if (Engine.Resource.Exists(path)) Execute(path);
             else
             {
-                Console.Write("> ");
-                Execute(Console.ReadLine());
+                System.Console.Write("> ");
+                Execute(System.Console.ReadLine());
             }
         }
         public static void Final()
@@ -133,7 +133,7 @@ namespace MiMFa.Engine.DEAL.Environment
         }
         public static void Clear()
         {
-            Console.Clear();
+            System.Console.Clear();
         }
         public static void Stop()
         {
@@ -183,7 +183,7 @@ namespace MiMFa.Engine.DEAL.Environment
                 case 0:
                     break;
                 case 1:
-                    Console.WriteLine(value);
+                    System.Console.WriteLine(value);
                     break;
                 case 2:
                     DisplayObject(value);
@@ -204,17 +204,17 @@ namespace MiMFa.Engine.DEAL.Environment
         {
             if (!(value is Undefined) && !(value is VoidResult))
                 if (value is LogEventArgs)
-                    Console.WriteLine(((LogEventArgs)value).ToString());
+                    System.Console.WriteLine(((LogEventArgs)value).ToString());
                 else if (value is IEnumerable<LogEventArgs>)
                     foreach (var item in value as IEnumerable<LogEventArgs>)
-                        Console.WriteLine(item.ToString());
+                        System.Console.WriteLine(item.ToString());
                 else
-                    Console.WriteLine(value);
+                    System.Console.WriteLine(value);
         }
         public static void DisplayJson(object value, Newtonsoft.Json.Formatting? flags = null)
         {
             if (value != null && !(value is Undefined) && !(value is VoidResult))
-                Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(value, flags??Newtonsoft.Json.Formatting.Indented));
+                System.Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(value, flags?? Newtonsoft.Json.Formatting.Indented));
         }
         public static void DisplayHybrid(object value)
         {
@@ -232,7 +232,7 @@ namespace MiMFa.Engine.DEAL.Environment
             switch (e.Status)
             {
                 case Core.LogStatus.Error:
-                    Console.Error.WriteLine(e);
+                    System.Console.Error.WriteLine(e);
                     break;
                 default:
                     break;

@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 
-		<RootNamespace>MiMFa.Engine.DEAL.Environment</RootNamespace>
+		<RootNamespace>MiMFa.Engine.DEAL.Console</RootNamespace>
 		<EnableDefaultCompileItems>true</EnableDefaultCompileItems>
 
 		<Company>MiMFa</Company>
